@@ -32,3 +32,5 @@ Tests
 
 In order to run the tests for `rottentomatoes.py`, make sure you have the
 [mock library](http://pypi.python.org/pypi/mock) installed.
+
+Also, all code complies with the [PEP 8 Style Guide](http://www.python.org/dev/peps/pep-0008/).
