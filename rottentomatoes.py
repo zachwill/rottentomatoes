@@ -15,6 +15,7 @@ except ImportError:
 
 from api_key_rottentomatoes import API_KEY
 
+
 class RT(object):
     """
     An easy-to-use Python wrapper for the Rotten Tomatoes API.
@@ -29,19 +30,27 @@ class RT(object):
     >>> RT().search('the lion king')
     """
 
-    def __init__(self, api_key=''):
+    def __init__(self, api_key='', version=1.0):
         if not api_key:
             self.api_key = API_KEY
         else:
             self.api_key = api_key
-        BASE_URL = 'http://api.rottentomatoes.com/api/public/v1.0/'
-        self.list_url = ''.join([BASE_URL, 'lists.json?apikey=', self.api_key])
-        self.search_url = ''.join([BASE_URL, 'movies?apikey=',
-            self.api_key, '&'])
+        self.BASE_URL = 'http://api.rottentomatoes.com/api/public/v%s/' %\
+                str(version)  # Python has quirky float behavior
+        self.lists_url = self.BASE_URL + 'lists.json?'
+        self.search_url = self.BASE_URL + 'movies?'
 
     def search(self, query, page=1, page_limit=30):
         """Rotten Tomatoes movie search endpoint."""
-        q = urlencode({'q': query, 'page': page, 'page_limit': page_limit})
-        url = self.search_url + q
+        params = urlencode({'apikey': self.api_key, 'q': query, 'page': page,
+            'page_limit': page_limit})
+        url = self.search_url + params
+        data = json.loads(urllib2.urlopen(url).read())
+        return data
+
+    def lists_directory(self):
+        """Displays top level lists available in the API."""
+        params = urlencode({'apikey': self.api_key})
+        url = self.lists_url + params
         data = json.loads(urllib2.urlopen(url).read())
         return data
