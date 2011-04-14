@@ -37,7 +37,7 @@ class RT(object):
             self.api_key = api_key
         self.BASE_URL = 'http://api.rottentomatoes.com/api/public/v%s/' %\
                 str(version)  # Python has quirky float behavior
-        self.lists_url = self.BASE_URL + 'lists.json?'
+        self.lists_url = self.BASE_URL + 'lists'
         self.search_url = self.BASE_URL + 'movies?'
 
     def search(self, query, page=1, page_limit=30):
@@ -48,9 +48,32 @@ class RT(object):
         data = json.loads(urllib2.urlopen(url).read())
         return data
 
-    def lists_directory(self):
-        """Displays top level lists available in the API."""
+    def lists(self, directory=None, sub=None):
+        """
+        Displays the lists available in the Rotten Tomatoes API.
+
+        Example usage:
+
+        >>> RT().lists()
+        {u'links': {u'movies': u'http://link-to-movies'
+                    u'dvds': u'http://link-to-dvds'}
+        >>> RT().lists('dvds')
+        {u'links': {u'new_releases': u'http://link-to-new-releases'}
+        >>> RT().lists(directory='dvds')
+        {u'links': {u'new_releases': u'http://link-to-new-releases'}
+        >>> RT().lists('movies', 'upcoming')
+        {'your data':'right here'}
+        >>> RT().lists(directory='movies', sub='upcoming')
+        {'your data':'right here'}
+        """
+        lists_url = self.lists_url
+        if directory:
+            if sub:
+                lists_url += '/%s/%s' % (directory, sub)
+            else:
+                lists_url += '/%s' % directory
+        lists_url += '.json?'
         params = urlencode({'apikey': self.api_key})
-        url = self.lists_url + params
-        data = json.loads(urllib2.urlopen(url).read())
+        lists_url += params
+        data = json.loads(urllib2.urlopen(lists_url).read())
         return data
