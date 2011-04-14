@@ -34,12 +34,14 @@ class RT(object):
             self.api_key = API_KEY
         else:
             self.api_key = api_key
-        self.url = ''.join(['http://api.rottentomatoes.com/api/public/v1.0/',
-            'movies?apikey=', self.api_key, '&'])
+        BASE_URL = 'http://api.rottentomatoes.com/api/public/v1.0/'
+        self.list_url = ''.join([BASE_URL, 'lists.json?apikey=', self.api_key])
+        self.search_url = ''.join([BASE_URL, 'movies?apikey=',
+            self.api_key, '&'])
 
     def search(self, query, page=1, page_limit=30):
         """Rotten Tomatoes movie search endpoint."""
         q = urlencode({'q': query, 'page': page, 'page_limit': page_limit})
-        url = self.url + q
+        url = self.search_url + q
         data = json.loads(urllib2.urlopen(url).read())
         return data
