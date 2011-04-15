@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """Unit tests for the `rottentomatoes.py` file."""
-from __future__ import with_statement
+
 import unittest
 from urlparse import urlparse, parse_qs
 from mock import Mock
