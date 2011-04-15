@@ -78,8 +78,8 @@ With your API key saved:
 <pre><code>
     >>> rt = RT()
     >>> rt.lists()
-    {'links': {'movies': 'http://link-to-movies'},
-                'dvds': 'http://link-to-dvds'}}
+    {'links': {'movies': 'http://link-to-movies',
+               'dvds': 'http://link-to-dvds'}}
 
     >>> rt.lists('dvds')
     {'links': {'new_releases': 'http://link-to-new-releases'}}
@@ -94,10 +94,10 @@ With your API key saved:
     {'your data': 'is right here'}
 
     >>> rt.lists('movies')
-    {'links': {'box_office': 'http://link-to-box-office-movies'},
-               {'in_theaters': 'http://link-to-movies-in-theaters'},
-               {'opening': 'http://link-to-opening-movies'},
-               {'upcoming': 'http://link-to-upcoming-movies'}}
+    {'links': {'box_office': 'http://link-to-box-office-movies',
+               'in_theaters': 'http://link-to-movies-in-theaters',
+               'opening': 'http://link-to-opening-movies',
+               'upcoming': 'http://link-to-upcoming-movies'}
 
     >>> rt.lists('movies', 'box_office')
     {'your data': 'is right here'}
