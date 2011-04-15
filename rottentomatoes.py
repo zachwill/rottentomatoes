@@ -48,7 +48,7 @@ class RT(object):
         data = json.loads(urllib2.urlopen(url).read())
         return data['movies']
 
-    def lists(self, directory=None, sub=None):
+    def lists(self, directory=None, sub=None, **kwargs):
         """
         Displays the lists available in the Rotten Tomatoes API.
 
@@ -60,13 +60,6 @@ class RT(object):
         >>> RT().lists('dvds')
         {u'links': {u'new_releases': u'http://link-to-new-releases'}
         >>> RT().lists('dvds', 'new_releases')
-
-        You might prefer to use the optional argument names:
-
-        >>> RT().lists(directory='dvds')
-        {u'links': {u'new_releases': u'http://link-to-new-releases'}
-        {'your data':'right here'}
-        >>> RT().lists(directory='dvds', sub='new_releases')
         """
         lists_url = self.lists_url
         if directory:
@@ -75,17 +68,18 @@ class RT(object):
             else:
                 lists_url += '/%s' % directory
         lists_url += '.json?'
-        params = urlencode({'apikey': self.api_key})
+        kwargs.update({'apikey': self.api_key})
+        params = urlencode(kwargs)
         lists_url += params
         data = json.loads(urllib2.urlopen(lists_url).read())
         return data
 
-    def new(self, kind='movies'):
+    def new(self, kind='movies', **kwargs):
         """
         Short method to return just opened theatrical movies or newly
         released dvds. Returns a list of dictionaries.
         """
         if kind == 'movies':
-            return self.lists('movies', 'opening')['movies']
+            return self.lists('movies', 'opening', **kwargs)['movies']
         elif kind == 'dvds':
-            return self.lists('dvds', 'new_releases')['movies']
+            return self.lists('dvds', 'new_releases', **kwargs)['movies']
