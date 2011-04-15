@@ -35,8 +35,8 @@ class RT(object):
             self.api_key = API_KEY
         else:
             self.api_key = api_key
-        self.BASE_URL = 'http://api.rottentomatoes.com/api/public/v%s/' %\
-                str(version)  # Python has quirky float behavior
+        self.BASE_URL = 'http://api.rottentomatoes.com/api/public/v%.1f/' %\
+                version
         self.lists_url = self.BASE_URL + 'lists'
         self.search_url = self.BASE_URL + 'movies?'
 
