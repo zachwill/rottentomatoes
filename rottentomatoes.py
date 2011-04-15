@@ -41,30 +41,32 @@ class RT(object):
         self.search_url = self.BASE_URL + 'movies?'
 
     def search(self, query, page=1, page_limit=30):
-        """Rotten Tomatoes movie search endpoint."""
+        """Rotten Tomatoes movie search. Returns a list of dictionaries."""
         params = urlencode({'apikey': self.api_key, 'q': query, 'page': page,
             'page_limit': page_limit})
         url = self.search_url + params
         data = json.loads(urllib2.urlopen(url).read())
-        return data
+        return data['movies']
 
     def lists(self, directory=None, sub=None):
         """
         Displays the lists available in the Rotten Tomatoes API.
 
-        Example usage:
+        Usage:
 
         >>> RT().lists()
         {u'links': {u'movies': u'http://link-to-movies'
                     u'dvds': u'http://link-to-dvds'}
         >>> RT().lists('dvds')
         {u'links': {u'new_releases': u'http://link-to-new-releases'}
+        >>> RT().lists('dvds', 'new_releases')
+
+        You might prefer to use the optional argument names:
+
         >>> RT().lists(directory='dvds')
         {u'links': {u'new_releases': u'http://link-to-new-releases'}
-        >>> RT().lists('movies', 'upcoming')
         {'your data':'right here'}
-        >>> RT().lists(directory='movies', sub='upcoming')
-        {'your data':'right here'}
+        >>> RT().lists(directory='dvds', sub='new_releases')
         """
         lists_url = self.lists_url
         if directory:
@@ -77,3 +79,13 @@ class RT(object):
         lists_url += params
         data = json.loads(urllib2.urlopen(lists_url).read())
         return data
+
+    def new(self, kind='movies'):
+        """
+        Short method to return just opened theatrical movies or newly
+        released dvds. Returns a list of dictionaries.
+        """
+        if kind == 'movies':
+            return self.lists('movies', 'opening')['movies']
+        elif kind == 'dvds':
+            return self.lists('dvds', 'new_releases')['movies']
