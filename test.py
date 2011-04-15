@@ -28,16 +28,22 @@ def call_args(kind='query'):
         return parsed.path
 
 
-class ApiKeyTest(unittest.TestCase):
+class RTClassTest(unittest.TestCase):
 
     def setUp(self):
         set_up()
 
-    def test_rottentomatoes_api_key(self):
+    def test_uninitialized_api_key(self):
         self.assertEqual(RT().api_key, 'my_api_key')
 
-    def test_rottentomateos_called_api_key(self):
+    def test_initialized_api_key(self):
         self.assertEqual(RT('called_api_key').api_key, 'called_api_key')
+
+    def test_version_argument_with_float(self):
+        self.assertEqual(RT(version=2.5).version, '2.5')
+
+    def test_version_argument_with_string(self):
+        self.assertEqual(RT(version='2.5').version, '2.5')
 
 
 class SearchUrlTest(unittest.TestCase):

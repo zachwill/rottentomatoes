@@ -35,7 +35,10 @@ class RT(object):
             self.api_key = API_KEY
         else:
             self.api_key = api_key
-        self.BASE_URL = 'http://api.rottentomatoes.com/api/public/v%.1f/' %\
+        if isinstance(version, float):
+            version = str(version) # eliminate any weird float behavior
+        self.version = version
+        self.BASE_URL = 'http://api.rottentomatoes.com/api/public/v%s/' %\
                 version
         self.lists_url = self.BASE_URL + 'lists'
         self.search_url = self.BASE_URL + 'movies?'
