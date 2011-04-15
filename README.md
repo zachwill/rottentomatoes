@@ -1,6 +1,39 @@
 rottentomatoes.py
 ================
 
+<pre><code>
+
+
+                      ,jf.          .K                                          
+                    KKKKKKKt        KK    .                                     
+                    KKK  KKK       KKKKK iK    .D,                              
+                    KKK  KKK        KK,:jKKKK KKKKK                             
+                    KKKtLKK.  GKK   KK  KKKKKDKK  KK ;. KKj                     
+                    KKKKKKG  KKKKK .KK   KK  KKKKKKK KKKKKK                     
+                    KK,,:KKKtKK fKK.KKjK KK  KK;     KK  KK                     
+                    KK   KKKDKK .KK KKKL KK K KKKKKG KK  KK                     
+         tD         KK   KKK KK  KK      KKKK  KKKt  KK  KK                     
+ KKKKKKKKKK         KK   KKK KKKKKD       jt         KK  KK                     
+ KKKKKKKKKK                   ;KK                                               
+ KKKKKKK                                       KE      E                 GEE    
+    :KKK                KKK: ,KKK             DKE     KKKKK.           KKKKKK.  
+     KKK       D :  KKKKKKKKDKKKKK     .:    KKKKKK  :KKDKKK           KK  LEE  
+     KKK   KKKKKK   KKKKKKKKKEKKKKj GKKKKKK,,KKKKKK .KKKtKtKK.         KKKKKj   
+     KKK  KKKKKKK.  KKK   KKK  EKKD KKK fKKK  KK     KfttttKKL KKKKKK  KKKKKKK  
+     KKK  KKKKKKKKK KKK   KKK  EKKD   :  DKK  KK    KKKDttKKK;EKKKKKKK  KKKKKKK 
+     KKK. KKKKKKKKK.KKK   KKK  LKKD  DKKKKKK iKK    KKjKtKttK KKK  ;KK      KKK 
+     KKKt KKKKKKKKK KKK   KKK  tKKD KKKKiKKK GKK  K.,KKKtKKKK KKKKKKKKfKKKKKKK  
+     KKKE KKKKKKKKK KKK   KKK  jKKDKKK   KKK GKKLLK; jKiKKKK .KKKKKKKKD KKKKK   
+     KKKK ;KKKKKKKK ,:         :;tfKKKEKKKKK  KKKKK      :    KK,               
+           GKKKK                    KKKKDKKK    :             KKKEDKKK          
+             KKK                                               KKKKKK           
+                                                                 .i             
+
+
+                   https://github.com/zachwill/rottentomatoes
+
+</code></pre>
+
 
 What is this?
 ------------
