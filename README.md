@@ -33,14 +33,14 @@ With your API key saved:
     >>> rt = RT()
     >>> rt.search('the lion king')
     [{u'movie': u'here'}, {u'movie': u'here'}]
-<pre><code>
+</code></pre>
 
 * `new` can be called to return a list of either new **movies** or **dvds**.
 <pre><code>
     >>> rt = RT()
     >>> rt.new('movies')
     [{u'movie': u'here'}, {u'movie': u'here'}]
-<pre><code>
+</code></pre>
 
 * `lists` can be used to search through Rotten Tomatoes API.
 <pre><code>
