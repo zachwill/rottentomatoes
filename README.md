@@ -133,7 +133,7 @@ With your API key saved:
     [{'dvd': 'here'}, {'dvd': 'here'}, ...]
 </code></pre>
 
-* `movies` -- Short method for returning specific movie lists. Possible sub aruments include: `box_office`, `in_theaters`, `opening`, and `upcoming`.
+* `movies` -- Short method for returning specific movie lists. Possible `sub` arguments include: `box_office`, `in_theaters`, `opening`, and `upcoming`.
 <pre><code>
     >>> rt = RT()
     >>> rt.movies('in_theaters', page_limit=5)
@@ -146,7 +146,7 @@ With your API key saved:
     {'page 2': 'of upcoming movies'}
 </code></pre>
 
-* `dvds` -- Short method for returning specific movie lists. Currently, only one sub argument is possible: `new_releases`.
+* `dvds` -- Short method for returning specific dvd lists. Currently, only one `sub` argument is possible: `new_releases`.
 <pre><code>
     >>> RT().dvds(page_limit=5)
     {'only 5': 'newly released dvds'}
@@ -166,3 +166,12 @@ In order to run the tests for `rottentomatoes.py`, make sure you have the
 [mock library](http://pypi.python.org/pypi/mock) installed.
 
 Also, all code complies with the [PEP 8 Style Guide](http://www.python.org/dev/peps/pep-0008/).
+
+
+License
+-------
+
+**Author**: Zach Williams
+
+All code released under [the Unlicense](http://unlicense.org/) (a.k.a. Public
+Domain).
