@@ -22,11 +22,11 @@ def set_up():
 def call_args(kind='query'):
     """Find out what urllib2.urlopen called while mocking."""
     call = rottentomatoes.urllib2.urlopen.call_args[0][0]
-    parsed = urlparse(call)
+    parsed_call = urlparse(call)
     if kind == 'query':
-        return  parse_qs(parsed.query)
+        return  parse_qs(parsed_call.query)
     elif kind == 'path':
-        return parsed.path
+        return parsed_call.path
 
 
 class RTClassInitTest(unittest.TestCase):
@@ -126,10 +126,10 @@ class ListsMethodTest(unittest.TestCase):
         self.assertEqual(path, '/api/public/v1.0/lists/movies/opening.json')
 
     def test_lists_url_keys_for_extra_kwargs(self):
-        RT().lists('movies', 'in_theaters', limit=5)
+        RT().lists('movies', 'in_theaters', page_limit=5)
         parsed_query = call_args()
         assert 'my_api_key' in parsed_query['apikey']
-        assert '5' in parsed_query['limit']
+        assert '5' in parsed_query['page_limit']
 
 
 class InfoMethodTest(unittest.TestCase):
@@ -252,13 +252,14 @@ class FeelingLuckyMethodTest(unittest.TestCase):
     def test_empty_feeling_lucky_method_fails(self):
         """
         For some reason the following code doesn't work?
+        Says no TypeError is raised -- even though one is.
 
         >>> self.assertRaises(TypeError, RT().feeling_lucky, ())
         """
         try:
             RT().feeling_lucky()
         except TypeError:
-            pass # Hack until I figure out why
+            pass # Hack until I figure out why.
 
     def test_first_json_loads_movies_result_is_returned(self):
         data = RT().feeling_lucky('some movie')
