@@ -14,7 +14,8 @@ def set_up():
     Mock both urllib2 and json.loads' return value. Makes for fast unit tests.
     """
     rottentomatoes.urllib2.urlopen = Mock()
-    movies_dict = {'movies': ['first_result', 'second_result']}
+    movies_dict = {'movies': ['first_result', 'second_result'],
+                   'total': 2}
     rottentomatoes.json.loads = Mock(return_value=movies_dict)
     rottentomatoes.API_KEY = 'my_api_key'
 
@@ -52,6 +53,11 @@ class SearchMethodTest(unittest.TestCase):
     def setUp(self):
         set_up()
 
+    def test_nonempty_search_url_path(self):
+        RT().search('some movie')
+        path = call_args('path')
+        self.assertEqual(path, '/api/public/v1.0/movies')
+
     def test_empty_search_url_keys(self):
         RT().search('')
         movie = call_args()
@@ -77,22 +83,29 @@ class SearchMethodTest(unittest.TestCase):
         movie = call_args()
         self.assertEqual(movie.keys(), ['q', 'apikey', 'page', 'page_limit'])
 
-    def test_nonempty_search_url_path(self):
-        RT().search('some movie')
-        path = call_args('path')
-        self.assertEqual(path, '/api/public/v1.0/movies')
-
-    def test_search_url_for_lion_king(self):
+    def test_search_url_keys_for_lion_king(self):
         RT().search('the lion king')
         movie = call_args()
         assert 'my_api_key' in movie['apikey']
         assert 'the lion king' in movie['q']
 
-    def test_search_url_for_ronin(self):
+    def test_search_url_keys_for_ronin(self):
         RT().search('ronin')
         movie = call_args()
         assert 'my_api_key' in movie['apikey']
         assert 'ronin' in movie['q']
+
+    def test_search_results_for_standard_datatype(self):
+        results = RT().search('some movie')
+        self.assertEqual(results, ['first_result', 'second_result'])
+
+    def test_search_results_for_movies_datatype(self):
+        results = RT().search('some movie', 'movies')
+        self.assertEqual(results, ['first_result', 'second_result'])
+
+    def test_search_results_for_total_datatype(self):
+        results = RT().search('some movie', 'total')
+        self.assertEqual(results, 2)
 
 
 class ListsMethodTest(unittest.TestCase):

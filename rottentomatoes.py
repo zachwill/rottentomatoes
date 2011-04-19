@@ -20,8 +20,6 @@ class RT(object):
     """
     An easy-to-use Python wrapper for the Rotten Tomatoes API.
 
-    Usage:
-
     >>> RT('my-api-key').search('the lion king')
 
     Or, if your API key is stored in the `api_key_rottentomatoes.py` file,
@@ -36,26 +34,30 @@ class RT(object):
         else:
             self.api_key = api_key
         if isinstance(version, float):
-            version = str(version) # eliminate any weird float behavior
+            version = str(version) # Eliminate any weird float behavior.
         self.version = version
         BASE_URL = 'http://api.rottentomatoes.com/api/public/v%s/' % version
         self.BASE_URL = BASE_URL
         self.lists_url = BASE_URL + 'lists'
         self.movie_url = BASE_URL + 'movies'
 
-    def search(self, query, **kwargs):
+    def search(self, query, datatype='movies', **kwargs):
         """
         Rotten Tomatoes movie search. Returns a list of dictionaries.
         Possible kwargs include: `page` and `page_limit`.
 
         >>> RT().search('the lion king')
+
+        Or, for the total count of search results:
+
+        >>> RT().search('disney', 'total')
         """
         search_url = self.movie_url + '?'
         kwargs.update({'apikey': self.api_key, 'q': query})
         params = urlencode(kwargs)
         search_url += params
         data = json.loads(urllib2.urlopen(search_url).read())
-        return data['movies']
+        return data[datatype]
 
     def lists(self, directory=None, sub=None, **kwargs):
         """
