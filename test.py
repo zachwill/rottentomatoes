@@ -189,7 +189,7 @@ class NewMethodTest(unittest.TestCase):
         self.assertEqual(path, '/api/public/v1.0/lists/dvds/new_releases.json')
 
     def test_new_url_keys_for_dvds_with_kwargs(self):
-        RT().new('movies', page=2)
+        RT().new('dvds', page=2)
         parsed_query = call_args()
         assert '2' in parsed_query['page']
 
