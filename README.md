@@ -43,7 +43,7 @@ What is this?
 use the API, make sure you sign up to get an API Key.
 
 In order to cut down on boilerplate code, you can then save your API key in the
-`api_key_rottentomatoes.py` file.
+`rottentomatoes_api_key.py` file.
 
 
 Usage
