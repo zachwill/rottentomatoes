@@ -22,7 +22,7 @@ class RT(object):
 
     >>> RT('my-api-key').search('the lion king')
 
-    Or, if your API key is stored in the `api_key_rottentomatoes.py` file,
+    Or, if your API key is stored in the `rottentomatoes_api_key.py` file,
     the RT class can be initialized like so:
 
     >>> RT().search('the lion king')

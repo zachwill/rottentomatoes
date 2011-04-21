@@ -9,7 +9,7 @@ except ImportError:
     from urlparse import urlparse
     from cgi import parse_qs
 from mock import Mock
-import rottentomatoes
+from rottentomatoes import rottentomatoes
 from rottentomatoes import RT
 
 

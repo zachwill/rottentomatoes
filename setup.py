@@ -1,16 +1,29 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
+
+import rottentomatoes
 
 setup(name="rottentomatoes",
       version="1.0",
       description="Rotten Tomatoes Python API",
+      long_description=rottentomatoes.RT.__doc__,
       keywords="rottentomatoes movies rotten tomatoes",
       author="Zach Williams",
       author_email="hey@zachwill.com",
       url="https://github.com/zachwill/rottentomatoes",
-      license="Public Domain",
-      py_modules=["rottentomatoes.py", "rottentomatoes_api_key.py"],
+      license="Unlicense (a.k.a. Public Domain)",
+      packages=["rottentomatoes"],
+      classifiers=['Development Status :: 4 - Beta',
+                   'Intended Audience :: Developers',
+                   'Natural Language :: English',
+                   'Operating System :: OS Independent',
+                   'Programming Language :: Python :: 2',
+                   'Topic :: Internet',
+                   'Topic :: Internet :: WWW/HTTP',
+                  ],
       test_suite="test.py",
-      tests_require=["mock", "Mock"],
-      repository_url="https://github.com/zachwill/rottentomatoes")
+      tests_require=["mock", "Mock"])
