@@ -45,11 +45,32 @@ use the API, make sure you sign up to get an API Key.
 In order to cut down on boilerplate code, you can then save your API key in the
 `rottentomatoes_api_key.py` file.
 
+Also, note that this package is in no way associated or endorsed by
+[RottenTomatoes.com](http://www.rottentomatoes.com/) or [Flixster,
+Inc](http://www.flixster.com/).
+
+
+Installation
+------------
+
+If you have `pip` installed, then run the following command:
+
+    pip install rottentomatoes
+
+You can also run `easy_install`:
+
+    easy_install rottentomatoes
+
+Or, if you want to help develop the package, just `git clone` the Github
+repository:
+
+    git clone https://github.com/zachwill/rottentomatoes.git
+
 
 Usage
 -----
 
-Without saving your API key:
+Without saving your API key in the `rottentomatoes_api_key.py` file:
 
     >>> from rottentomatoes import RT
     >>> RT('my_api_key').search('some movie here')
@@ -58,6 +79,11 @@ With your API key saved:
 
     >>> from rottentomatoes import RT
     >>> RT().search('some movie here')
+
+**NOTE**: Documentation from this point forward will assume you have saved your
+Rotten Tomatoes Developer API Key to the `rottentomatoes_api_key.py` file (which
+you should consider doing in order to cut down on boilerplate code).
+
 
 ### Methods
 
