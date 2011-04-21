@@ -3,7 +3,11 @@
 """Unit tests for the `rottentomatoes.py` file."""
 
 import unittest
-from urlparse import urlparse, parse_qs
+try:
+    from urlparse import urlparse, parse_qs
+except ImportError:
+    from urlparse import urlparse
+    from cgi import parse_qs
 from mock import Mock
 import rottentomatoes
 from rottentomatoes import RT
