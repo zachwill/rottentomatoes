@@ -13,7 +13,7 @@ try:
 except ImportError:
     import simplejson as json
 
-from api_key_rottentomatoes import API_KEY
+from rottentomatoes_api_key import API_KEY
 
 
 class RT(object):
