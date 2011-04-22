@@ -38,7 +38,7 @@ rottentomatoes.py
 What is this?
 ------------
 
-`rottentomatoes.py` offers an easy-to-use Python wrapper to interact with the
+`rottentomatoes` offers an easy-to-use Python wrapper to interact with the
 [Rotten Tomatoes API](http://developer.rottentomatoes.com/). Before you try and
 use the API, make sure you sign up to get an API Key.
 
