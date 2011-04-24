@@ -52,11 +52,11 @@ class RT(object):
 
         >>> RT().search('disney', 'total')
         """
-        search_url = self.movie_url + '?'
+        search_url = [self.movie_url, '?']
         kwargs.update({'apikey': self.api_key, 'q': query})
         params = urlencode(kwargs)
-        search_url += params
-        data = json.loads(urllib2.urlopen(search_url).read())
+        search_url.append(params)
+        data = json.loads(urllib2.urlopen(''.join(search_url)).read())
         return data[datatype]
 
     def lists(self, directory=None, sub=None, **kwargs):
@@ -70,17 +70,17 @@ class RT(object):
         {u'links': {u'new_releases': u'http://link-to-new-releases'}
         >>> RT().lists('dvds', 'new_releases')
         """
-        lists_url = self.lists_url
+        lists_url = [self.lists_url]
         if directory:
             if sub:
-                lists_url += '/%s/%s' % (directory, sub)
+                lists_url.append('/%s/%s' % (directory, sub))
             else:
-                lists_url += '/%s' % directory
-        lists_url += '.json?'
+                lists_url.append('/%s' % directory)
+        lists_url.append('.json?')
         kwargs.update({'apikey': self.api_key})
         params = urlencode(kwargs)
-        lists_url += params
-        data = json.loads(urllib2.urlopen(lists_url).read())
+        lists_url.append(params)
+        data = json.loads(urllib2.urlopen(''.join(lists_url)).read())
         return data
 
     def info(self, id_num, specific_info=None):
@@ -95,13 +95,13 @@ class RT(object):
         """
         if isinstance(id_num, int):
             id_num = str(id_num)
-        movie_url = self.movie_url
-        movie_url += '/%s' % id_num
+        movie_url = [self.movie_url]
+        movie_url.append('/%s' % id_num)
         if specific_info:
-            movie_url += '/%s' % specific_info
+            movie_url.append('/%s' % specific_info)
         end_of_url = '.json?%s' % urlencode({'apikey': self.api_key})
-        movie_url += end_of_url
-        data = json.loads(urllib2.urlopen(movie_url).read())
+        movie_url.append(end_of_url)
+        data = json.loads(urllib2.urlopen(''.join(movie_url)).read())
         return data
 
     def new(self, kind='movies', **kwargs):
