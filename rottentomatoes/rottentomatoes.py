@@ -77,10 +77,8 @@ class RT(object):
                 lists_url.append('/%s/%s' % (directory, sub))
             else:
                 lists_url.append('/%s' % directory)
-        lists_url.append('.json?')
         kwargs.update({'apikey': self.api_key})
-        params = urlencode(kwargs)
-        lists_url.append(params)
+        lists_url.extend(['.json?', urlencode(kwargs)])
         data = json.loads(urllib2.urlopen(''.join(lists_url)).read())
         return data
 
@@ -100,8 +98,8 @@ class RT(object):
         movie_url.append('/%s' % id_num)
         if specific_info:
             movie_url.append('/%s' % specific_info)
-        end_of_url = '.json?%s' % urlencode({'apikey': self.api_key})
-        movie_url.append(end_of_url)
+        end_of_url = ['.json?', urlencode({'apikey': self.api_key})]
+        movie_url.extend(end_of_url)
         data = json.loads(urllib2.urlopen(''.join(movie_url)).read())
         return data
 
