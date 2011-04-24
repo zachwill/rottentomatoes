@@ -155,7 +155,7 @@ class InfoMethodTest(unittest.TestCase):
         set_up()
 
     def test_empty_info_method_call_fails(self):
-        self.assertRaises(TypeError, RT().info, ())
+        self.assertRaises(TypeError, RT().info)
 
     def test_id_num_as_string(self):
         fight_club = '13153'
@@ -267,16 +267,7 @@ class FeelingLuckyMethodTest(unittest.TestCase):
         set_up()
 
     def test_empty_feeling_lucky_method_fails(self):
-        """
-        For some reason the following code doesn't work?
-        Says no TypeError is raised -- even though one is.
-
-        >>> self.assertRaises(TypeError, RT().feeling_lucky, ())
-        """
-        try:
-            RT().feeling_lucky()
-        except TypeError:
-            pass # Hack until I figure out why.
+        self.assertRaises(TypeError, RT().feeling_lucky)
 
     def test_first_json_loads_movies_result_is_returned(self):
         data = RT().feeling_lucky('some movie')
