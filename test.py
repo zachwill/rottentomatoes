@@ -9,8 +9,7 @@ except ImportError:
     from urlparse import urlparse
     from cgi import parse_qs
 from mock import Mock
-from rottentomatoes import rottentomatoes
-from rottentomatoes import RT
+from rottentomatoes import rottentomatoes, RT
 
 
 def set_up():
@@ -260,6 +259,7 @@ class DvdsMethodTest(unittest.TestCase):
         path = call_args('path')
         expected_path = '/api/public/v1.0/lists/dvds/new_releases.json'
         self.assertEqual(path, expected_path)
+
 
 class FeelingLuckyMethodTest(unittest.TestCase):
 
