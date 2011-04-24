@@ -10,7 +10,8 @@ import urllib2
 from urllib import urlencode
 try:
     import json
-except ImportError:
+except ImportError:  # pragma: no cover
+    # For older versions of Python.
     import simplejson as json
 
 from rottentomatoes_api_key import API_KEY
@@ -34,7 +35,7 @@ class RT(object):
         else:
             self.api_key = api_key
         if isinstance(version, float):
-            version = str(version) # Eliminate any weird float behavior.
+            version = str(version)  # Eliminate any weird float behavior.
         self.version = version
         BASE_URL = 'http://api.rottentomatoes.com/api/public/v%s/' % version
         self.BASE_URL = BASE_URL

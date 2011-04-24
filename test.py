@@ -5,11 +5,13 @@
 import unittest
 try:
     from urlparse import urlparse, parse_qs
-except ImportError:
+except ImportError:  # pragma: no cover
+    # For older versions of Python.
     from urlparse import urlparse
     from cgi import parse_qs
 from mock import Mock
-from rottentomatoes import rottentomatoes, RT
+from rottentomatoes import rottentomatoes
+from rottentomatoes import RT
 
 
 def set_up():
