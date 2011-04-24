@@ -55,8 +55,7 @@ class RT(object):
         """
         search_url = [self.movie_url, '?']
         kwargs.update({'apikey': self.api_key, 'q': query})
-        params = urlencode(kwargs)
-        search_url.append(params)
+        search_url.append(urlencode(kwargs))
         data = json.loads(urllib2.urlopen(''.join(search_url)).read())
         return data[datatype]
 
