@@ -35,6 +35,17 @@ rottentomatoes.py
 </code></pre>
 
 
+Changelog
+---------
+
+### V1.0.1
+ * 100% test coverage.
+ * Removal of all `+=` operators -- now using `''.join()` instead.
+
+### V1.0
+ * Initial release.
+
+
 What is this?
 ------------
 
