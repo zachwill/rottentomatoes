@@ -6,13 +6,19 @@ Rotten Tomatoes API:  http://developer.rottentomatoes.com/
 Main file for interacting with the Rotten Tomatoes API.
 """
 
-import urllib2
 from urllib import urlencode
+
 try:
     import json
 except ImportError:  # pragma: no cover
     # For older versions of Python.
     import simplejson as json
+
+try:
+    from urllib2 import urlopen
+except ImportError:  # pragma: no cover
+    # For Python 3.
+    from urllib.request import urlopen
 
 from rottentomatoes_api_key import API_KEY
 
@@ -56,7 +62,7 @@ class RT(object):
         search_url = [self.movie_url, '?']
         kwargs.update({'apikey': self.api_key, 'q': query})
         search_url.append(urlencode(kwargs))
-        data = json.loads(urllib2.urlopen(''.join(search_url)).read())
+        data = json.loads(urlopen(''.join(search_url)).read())
         return data[datatype]
 
     def lists(self, directory=None, sub=None, **kwargs):
@@ -78,7 +84,7 @@ class RT(object):
                 lists_url.append('/%s' % directory)
         kwargs.update({'apikey': self.api_key})
         lists_url.extend(['.json?', urlencode(kwargs)])
-        data = json.loads(urllib2.urlopen(''.join(lists_url)).read())
+        data = json.loads(urlopen(''.join(lists_url)).read())
         return data
 
     def info(self, id_num, specific_info=None):
@@ -99,7 +105,7 @@ class RT(object):
             movie_url.append('/%s' % specific_info)
         end_of_url = ['.json?', urlencode({'apikey': self.api_key})]
         movie_url.extend(end_of_url)
-        data = json.loads(urllib2.urlopen(''.join(movie_url)).read())
+        data = json.loads(urlopen(''.join(movie_url)).read())
         return data
 
     def new(self, kind='movies', **kwargs):

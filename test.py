@@ -16,9 +16,9 @@ from rottentomatoes import RT
 
 def set_up():
     """
-    Mock both urllib2 and json.loads' return value. Makes for fast unit tests.
+    Mock both and json.loads' return value. Makes for fast unit tests.
     """
-    rottentomatoes.urllib2.urlopen = Mock()
+    rottentomatoes.urlopen = Mock()
     movies_dict = {'movies': ['first_result', 'second_result'],
                    'total': 2}
     rottentomatoes.json.loads = Mock(return_value=movies_dict)
@@ -26,8 +26,8 @@ def set_up():
 
 
 def call_args(kind='query'):
-    """Find out what urllib2.urlopen called while mocking."""
-    call = rottentomatoes.urllib2.urlopen.call_args[0][0]
+    """Find out what urlopen called while mocking."""
+    call = rottentomatoes.urlopen.call_args[0][0]
     parsed_call = urlparse(call)
     if kind == 'query':
         return  parse_qs(parsed_call.query)
