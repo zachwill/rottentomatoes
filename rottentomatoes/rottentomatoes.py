@@ -7,6 +7,7 @@ Main file for interacting with the Rotten Tomatoes API.
 """
 
 from urllib import urlencode
+import zlib
 
 try:
     import json
@@ -48,6 +49,25 @@ class RT(object):
         self.lists_url = BASE_URL + 'lists'
         self.movie_url = BASE_URL + 'movies'
 
+    def _load_json_from_url(self, url):
+      """
+      A wrapper around the api call. The response might be gzipped,
+      which this will abstract away.
+      Returns a json-decoded object.
+      """
+      response = urlopen(url).read()
+
+      # the response might be gzip'd
+      try:
+        # explanation of magic number:
+        # http://stackoverflow.com/a/2695466/474683
+        response = zlib.decompress(response, 16+zlib.MAX_WBITS)
+      except zlib.error:
+        # if there's an error, it's probably not gzip'd
+        pass
+
+      return json.loads(response)
+
     def search(self, query, datatype='movies', **kwargs):
         """
         Rotten Tomatoes movie search. Returns a list of dictionaries.
@@ -62,7 +82,7 @@ class RT(object):
         search_url = [self.movie_url, '?']
         kwargs.update({'apikey': self.api_key, 'q': query})
         search_url.append(urlencode(kwargs))
-        data = json.loads(urlopen(''.join(search_url)).read())
+        data = self._load_json_from_url(''.join(search_url))
         return data[datatype]
 
     def lists(self, directory=None, sub=None, **kwargs):
@@ -84,7 +104,7 @@ class RT(object):
                 lists_url.append('/%s' % directory)
         kwargs.update({'apikey': self.api_key})
         lists_url.extend(['.json?', urlencode(kwargs)])
-        data = json.loads(urlopen(''.join(lists_url)).read())
+        data = self._load_json_from_url(''.join(lists_url))
         return data
 
     def info(self, id_num, specific_info=None):
@@ -105,7 +125,7 @@ class RT(object):
             movie_url.append('/%s' % specific_info)
         end_of_url = ['.json?', urlencode({'apikey': self.api_key})]
         movie_url.extend(end_of_url)
-        data = json.loads(urlopen(''.join(movie_url)).read())
+        data = self._load_json_from_url(''.join(movie_url))
         return data
 
     def new(self, kind='movies', **kwargs):
