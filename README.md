@@ -38,11 +38,14 @@ rottentomatoes.py
 Changelog
 ---------
 
-### V1.0.1
+### 1.1
+ * Support `gzip`-encoded responses from the API (thanks to [`devrelm`](https://github.com/devrelm))
+
+### 1.0.1
  * 100% test coverage.
  * Removal of all `+=` operators -- now using `''.join()` instead.
 
-### V1.0
+### 1.0
  * Initial release.
 
 
