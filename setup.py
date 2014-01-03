@@ -8,7 +8,7 @@ except ImportError:
 import rottentomatoes
 
 setup(name="rottentomatoes",
-      version="1.0.1",
+      version="1.1",
       description="Rotten Tomatoes Python API",
       long_description=rottentomatoes.RT.__doc__,
       keywords="rottentomatoes movies rotten tomatoes",

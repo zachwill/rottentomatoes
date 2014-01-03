@@ -22,6 +22,7 @@ def set_up():
     movies_dict = {'movies': ['first_result', 'second_result'],
                    'total': 2}
     rottentomatoes.json.loads = Mock(return_value=movies_dict)
+    rottentomatoes.zlib.decompress = Mock()
     rottentomatoes.API_KEY = 'my_api_key'
 
 
