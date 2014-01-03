@@ -55,7 +55,7 @@ class RT(object):
       which this will abstract away.
       Returns a json-decoded object.
       """
-      response = urllib2.urlopen(url).read()
+      response = urlopen(url).read()
 
       # the response might be gzip'd
       try:
