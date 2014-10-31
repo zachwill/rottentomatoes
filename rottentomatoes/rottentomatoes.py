@@ -45,6 +45,8 @@ class RT(object):
             self.api_key = API_KEY
         else:
             self.api_key = api_key
+        assert self.api_key != None, "No API Key"
+
         if isinstance(version, float):
             version = str(version)  # Eliminate any weird float behavior.
         self.version = version
