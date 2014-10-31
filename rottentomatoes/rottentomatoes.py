@@ -25,7 +25,7 @@ except ImportError:  # pragma: no cover
 try:
     from rottentomatoes_api_key import API_KEY
 except ImportError:
-    API_KEY = os.environ['RT_KEY']
+    API_KEY = os.environ.get('RT_KEY')
 
 
 class RT(object):
