@@ -38,15 +38,22 @@ rottentomatoes.py
 Changelog
 ---------
 
+### 2.0
+
+* No longer use an API key file.
+
 ### 1.1
- * Support `gzip`-encoded responses from the API (thanks to [`devrelm`](https://github.com/devrelm))
+
+* Support `gzip`-encoded responses from the API (thanks to [`devrelm`](https://github.com/devrelm))
 
 ### 1.0.1
- * 100% test coverage.
- * Removal of all `+=` operators -- now using `''.join()` instead.
+
+* 100% test coverage.
+* Removal of all `+=` operators -- now using `''.join()` instead.
 
 ### 1.0
- * Initial release.
+
+* Initial release.
 
 
 What is this?
@@ -84,19 +91,27 @@ repository:
 Usage
 -----
 
-Without saving your API key in the `rottentomatoes_api_key.py` file:
+Without saving your API key as a `RT_KEY` environment variable:
 
-    >>> from rottentomatoes import RT
-    >>> RT('my_api_key').search('some movie here')
+```python
+from rottentomatoes import RT
+
+RT('my_api_key').search('some movie here')
+```
 
 With your API key saved:
 
-    >>> from rottentomatoes import RT
-    >>> RT().search('some movie here')
+```python
+from rottentomatoes import RT
+
+RT().search('some movie here')
+```
 
 **NOTE**: Documentation from this point forward will assume you have saved your
-Rotten Tomatoes Developer API Key to the `rottentomatoes_api_key.py` file (which
-you should consider doing in order to cut down on boilerplate code).
+Rotten Tomatoes Developer API Key as a `RT_KEY` environment variable:
+
+    $ RT_KEY='my_api_key'
+    $ echo $RT_KEY
 
 
 ### Methods

@@ -22,10 +22,8 @@ except ImportError:  # pragma: no cover
     # For Python 3.
     from urllib.request import urlopen
 
-try:
-    from rottentomatoes_api_key import API_KEY
-except ImportError:
-    API_KEY = os.environ.get('RT_KEY')
+
+API_KEY = os.environ.get('RT_KEY')
 
 
 class RT(object):
