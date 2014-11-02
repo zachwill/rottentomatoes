@@ -8,6 +8,7 @@ Main file for interacting with the Rotten Tomatoes API.
 
 from urllib import urlencode
 import zlib
+import os
 
 try:
     import json
@@ -21,7 +22,10 @@ except ImportError:  # pragma: no cover
     # For Python 3.
     from urllib.request import urlopen
 
-from rottentomatoes_api_key import API_KEY
+try:
+    from rottentomatoes_api_key import API_KEY
+except ImportError:
+    API_KEY = os.environ.get('RT_KEY')
 
 
 class RT(object):
@@ -41,6 +45,8 @@ class RT(object):
             self.api_key = API_KEY
         else:
             self.api_key = api_key
+        assert self.api_key != None, "No API Key"
+
         if isinstance(version, float):
             version = str(version)  # Eliminate any weird float behavior.
         self.version = version
