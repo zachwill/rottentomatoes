@@ -1,64 +1,6 @@
 rottentomatoes.py
 ================
 
-<pre><code>
-
-
-                      ,jf.          .K                                          
-                    KKKKKKKt        iK    .                                     
-                    KKK  KKK       KKKKK iK    .D,                              
-                    KKK  KKK        KK,:jKKKK KKKKK                             
-                    KKKtLKK.  GKK   KK  KKKKKDKK  KK ;. KKj                     
-                    KKKKKKG  KKKKK .KK   KK  KKKKKKK KKKKKK                     
-                    KK,,:KKKtKK fKK.KKjK KK  KK;     KK  KK                     
-                    KK   KKKDKK .KK KKKL KK K KKKKKG KK  KK                     
-                    KK   KKK KK  KK      KKKK  KKKt  KK  KK                     
- KKKKKKKKKK         KK   KKK KKKKKD       jt         KK  KK                     
- KKKKKKKKKK                   ;KK                                               
- KKKKKKKKKK                                    KE                        GEE    
-    :KKK                KKK: ,KKK             DKE     KKKKK.           KKKKKK.  
-     KKK       D :  KKKKKKKKDKKKKK           KKKKKK  :KKDKKK           KK  LEE  
-     KKK   KKKKKK   KKKKKKKKKEKKKKj GKKKKKK,,KKKKKK .KKKtKtKK.         KKKKKj   
-     KKK  KKKKKKK.  KKK   KKK  EKKD KKK fKKK  KK     KfttttKKL KKKKKK  KKKKKKK  
-     KKK  KKKKKKKKK KKK   KKK  EKKD      DKK  KK    KKKDttKKK;EKKKKKKK  KKKKKKK 
-     KKK. KKKKKKKKK.KKK   KKK  LKKD  DKKKKKK iKK    KKjKtKttK KKK  ;KK      KKK 
-     KKKt KKKKKKKKK KKK   KKK  tKKD KKKKiKKK GKK  K.,KKKtKKKK KKKKKKKKfKKKKKKK  
-     KKKE KKKKKKKKK KKK   KKK  jKKDKKK   KKK GKKLLK; jKiKKKK .KKKKKKKKD KKKKK   
-     KKKK ;KKKKKKKK              tfKKKEKKKKK  KKKKK           KK,               
-           GKKKK                    KKKKDKKK                  KKKEDKKK          
-             KKK                                               KKKKKK           
-
-
-
-                   https://github.com/zachwill/rottentomatoes
-
-</code></pre>
-
-
-Changelog
----------
-
-### 2.0
-
-* No longer use an API key file.
-
-### 1.1
-
-* Support `gzip`-encoded responses from the API (thanks to [`devrelm`](https://github.com/devrelm))
-
-### 1.0.1
-
-* 100% test coverage.
-* Removal of all `+=` operators -- now using `''.join()` instead.
-
-### 1.0
-
-* Initial release.
-
-
-What is this?
-------------
-
 `rottentomatoes` offers an easy-to-use Python wrapper to interact with the
 [Rotten Tomatoes API](http://developer.rottentomatoes.com/). Before you try and
 use the API, make sure you sign up to get an API Key.
@@ -114,9 +56,13 @@ Rotten Tomatoes Developer API Key as a `RT_KEY` environment variable:
     $ echo $RT_KEY
 
 
-### Methods
+Methods
+-------
 
-* `search`  -- Rotten Tomatoes movie search. Returns a list of dictionaries. Possible kwargs include: `page` and `page_limit`.
+### `search`
+
+Rotten Tomatoes movie search. Returns a list of dictionaries. Possible kwargs include: `page` and `page_limit`.
+
 ```python
 >>> rt = RT()
 >>> rt.search('the lion king')
@@ -129,7 +75,10 @@ Rotten Tomatoes Developer API Key as a `RT_KEY` environment variable:
 [{'movie': 'from second page'}, {'movie': 'from second page'}, ...]
 ```
 
-* `lists` -- Displays the lists available in the Rotten Tomatoes API.
+### `lists`
+
+Displays the lists available in the Rotten Tomatoes API.
+
 ```python
 >>> rt = RT()
 >>> rt.lists()
@@ -164,7 +113,10 @@ Rotten Tomatoes Developer API Key as a `RT_KEY` environment variable:
 {'your data': 'is right here'}
 ```
 
-* `info` -- Return info for a movie given its `id`. Arguments for `specific_info` include `cast` and `reviews`.
+### `info`
+
+Return info for a movie given its `id`. Arguments for `specific_info` include `cast` and `reviews`.
+
 ```python
 >>> rt = RT()
 >>> fight_club = '13153'
@@ -178,7 +130,10 @@ Rotten Tomatoes Developer API Key as a `RT_KEY` environment variable:
 {'reviews': 'are right here'}
 ```
 
-* `new`  -- Short method to return just opened theatrical movies or newly released dvds. Returns a list of dictionaries.
+### `new`
+
+Short method to return just opened theatrical movies or newly released dvds. Returns a list of dictionaries.
+
 ```python
 >>> rt = RT()
 >>> rt.new('movies')
@@ -188,7 +143,10 @@ Rotten Tomatoes Developer API Key as a `RT_KEY` environment variable:
 [{'dvd': 'here'}, {'dvd': 'here'}, ...]
 ```
 
-* `movies` -- Short method for returning specific movie lists. Possible `sub` arguments include: `box_office`, `in_theaters`, `opening`, and `upcoming`.
+### `movies`
+
+Short method for returning specific movie lists. Possible `sub` arguments include: `box_office`, `in_theaters`, `opening`, and `upcoming`.
+
 ```python
 >>> rt = RT()
 >>> rt.movies('in_theaters', page_limit=5)
@@ -207,7 +165,10 @@ Rotten Tomatoes Developer API Key as a `RT_KEY` environment variable:
 {'only 5': 'newly released dvds'}
 ```
 
-* `feeling_lucky` -- Similar to Google's **I'm Feeling Lucky** button. Returns first instance of search term.
+### `feeling_lucky`
+
+Similar to Google's **I'm Feeling Lucky** button. Returns first instance of search term.
+
 ```python
 >>> RT().feeling_lucky('memento')
 {'first result': 'for memento'}
@@ -227,5 +188,4 @@ License
 
 **Author**: Zach Williams
 
-All code released under [the Unlicense](http://unlicense.org/) (a.k.a. Public
-Domain).
+All code released under [the Unlicense](http://unlicense.org/) (a.k.a. Public Domain).
