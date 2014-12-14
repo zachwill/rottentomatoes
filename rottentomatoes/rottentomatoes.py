@@ -32,7 +32,7 @@ class RT(object):
 
     >>> RT('my-api-key').search('the lion king')
 
-    Or, if your API key is stored in the `rottentomatoes_api_key.py` file,
+    Or, if your API key is saved as the `RT_KEY` environment variable,
     the RT class can be initialized like so:
 
     >>> RT().search('the lion king')
@@ -56,8 +56,7 @@ class RT(object):
     def _load_json_from_url(self, url):
       """
       A wrapper around the api call. The response might be gzipped,
-      which this will abstract away.
-      Returns a json-decoded object.
+      which this will abstract away. Returns a JSON-decoded dictionary.
       """
       response = urlopen(url).read()
 
