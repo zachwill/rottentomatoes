@@ -5,13 +5,6 @@ rottentomatoes.py
 [Rotten Tomatoes API](http://developer.rottentomatoes.com/). Before you try and
 use the API, make sure you sign up to get an API Key.
 
-In order to cut down on boilerplate code, you can then save your API key in the
-`rottentomatoes_api_key.py` file.
-
-Also, note that this package is in no way associated or endorsed by
-[RottenTomatoes.com](http://www.rottentomatoes.com/) or [Flixster,
-Inc](http://www.flixster.com/).
-
 
 Installation
 ------------
