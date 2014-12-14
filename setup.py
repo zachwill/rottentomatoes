@@ -8,10 +8,10 @@ except ImportError:
 import rottentomatoes
 
 setup(name="rottentomatoes",
-      version="2.0",
+      version="2.1",
       description="Rotten Tomatoes Python API",
       long_description=rottentomatoes.RT.__doc__,
-      keywords="rottentomatoes movies rotten tomatoes",
+      keywords="rottentomatoes movies rotten tomatoes zachwill",
       author="Zach Williams",
       author_email="hey@zachwill.com",
       url="https://github.com/zachwill/rottentomatoes",
