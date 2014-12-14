@@ -117,102 +117,101 @@ Rotten Tomatoes Developer API Key as a `RT_KEY` environment variable:
 ### Methods
 
 * `search`  -- Rotten Tomatoes movie search. Returns a list of dictionaries. Possible kwargs include: `page` and `page_limit`.
-<pre><code>
-    >>> rt = RT()
-    >>> rt.search('the lion king')
-    [{'movie': 'here'}, {'movie': 'here'}, ...]
+```python
+>>> rt = RT()
+>>> rt.search('the lion king')
+[{'movie': 'here'}, {'movie': 'here'}, ...]
 
-    >>> rt.search('fight club', page_limit=2)
-    [{'movie': 1}, {'movie': 2}]
+>>> rt.search('fight club', page_limit=2)
+[{'movie': 1}, {'movie': 2}]
 
-    >>> rt.search('disney', page=2)
-    [{'movie': 'from second page'}, {'movie': 'from second page'}, ...]
-</code></pre>
+>>> rt.search('disney', page=2)
+[{'movie': 'from second page'}, {'movie': 'from second page'}, ...]
+```
 
 * `lists` -- Displays the lists available in the Rotten Tomatoes API.
-<pre><code>
-    >>> rt = RT()
-    >>> rt.lists()
-    {'links': {'movies': 'http://link-to-movies',
-               'dvds': 'http://link-to-dvds'}}
+```python
+>>> rt = RT()
+>>> rt.lists()
+{'links': {'movies': 'http://link-to-movies',
+           'dvds': 'http://link-to-dvds'}}
 
-    >>> rt.lists('dvds')
-    {'links': {'new_releases': 'http://link-to-new-releases'}}
+>>> rt.lists('dvds')
+{'links': {'new_releases': 'http://link-to-new-releases'}}
 
-    >>> rt.lists(directory='dvds')
-    {'links': {'new_releases': 'http://link-to-new-releases'}}
+>>> rt.lists(directory='dvds')
+{'links': {'new_releases': 'http://link-to-new-releases'}}
 
-    >>> rt.lists('dvds', 'new_releases')
-    {'your data': 'is right here'}
+>>> rt.lists('dvds', 'new_releases')
+{'your data': 'is right here'}
 
-    >>> rt.lists(directory='dvds', sub='new_releases')
-    {'your data': 'is right here'}
+>>> rt.lists(directory='dvds', sub='new_releases')
+{'your data': 'is right here'}
 
-    >>> rt.lists('movies')
-    {'links': {'box_office': 'http://link-to-box-office-movies',
-               'in_theaters': 'http://link-to-movies-in-theaters',
-               'opening': 'http://link-to-opening-movies',
-               'upcoming': 'http://link-to-upcoming-movies'}
+>>> rt.lists('movies')
+{'links': {'box_office': 'http://link-to-box-office-movies',
+           'in_theaters': 'http://link-to-movies-in-theaters',
+           'opening': 'http://link-to-opening-movies',
+           'upcoming': 'http://link-to-upcoming-movies'}
 
-    >>> rt.lists('movies', 'box_office')
-    {'your data': 'is right here'}
+>>> rt.lists('movies', 'box_office')
+{'your data': 'is right here'}
 
-    >>> rt.lists('movies', 'box_office', page_limit=5)
-    {'only five': 'box office movies'}
+>>> rt.lists('movies', 'box_office', page_limit=5)
+{'only five': 'box office movies'}
 
-    >>> rt.lists('movies', 'opening')
-    {'your data': 'is right here'}
-</code></pre>
+>>> rt.lists('movies', 'opening')
+{'your data': 'is right here'}
+```
 
 * `info` -- Return info for a movie given its `id`. Arguments for `specific_info` include `cast` and `reviews`.
-<pre><code>
-    >>> rt = RT()
-    >>> fight_club = '13153'
-    >>> rt.info(fight_club)
-    {'your data': 'is right here'}
+```python
+>>> rt = RT()
+>>> fight_club = '13153'
+>>> rt.info(fight_club)
+{'your data': 'is right here'}
 
-    >>> rt.info(fight_club, 'cast')
-    {'cast info': 'is right here'}
+>>> rt.info(fight_club, 'cast')
+{'cast info': 'is right here'}
 
-    >>> rt.info(fight_club, 'reviews')
-    {'reviews': 'are right here'}
-</code></pre>
+>>> rt.info(fight_club, 'reviews')
+{'reviews': 'are right here'}
+```
 
 * `new`  -- Short method to return just opened theatrical movies or newly released dvds. Returns a list of dictionaries.
-<pre><code>
-    >>> rt = RT()
-    >>> rt.new('movies')
-    [{'movie': 'here'}, {'movie': 'here'}, ...]
+```python
+>>> rt = RT()
+>>> rt.new('movies')
+[{'movie': 'here'}, {'movie': 'here'}, ...]
 
-    >>> rt.new('dvds')
-    [{'dvd': 'here'}, {'dvd': 'here'}, ...]
-</code></pre>
+>>> rt.new('dvds')
+[{'dvd': 'here'}, {'dvd': 'here'}, ...]
+```
 
 * `movies` -- Short method for returning specific movie lists. Possible `sub` arguments include: `box_office`, `in_theaters`, `opening`, and `upcoming`.
-<pre><code>
-    >>> rt = RT()
-    >>> rt.movies('in_theaters', page_limit=5)
-    {'top five': 'movies in theaters'}
+```python
+>>> rt = RT()
+>>> rt.movies('in_theaters', page_limit=5)
+{'top five': 'movies in theaters'}
 
-    >>> rt.movies('opening', page_limit=5)
-    {'top five': 'movies opening'}
+>>> rt.movies('opening', page_limit=5)
+{'top five': 'movies opening'}
 
-    >>> rt.movies('upcoming', page=2)
-    {'page 2': 'of upcoming movies'}
-</code></pre>
+>>> rt.movies('upcoming', page=2)
+{'page 2': 'of upcoming movies'}
+```python
 
 * `dvds` -- Short method for returning specific dvd lists. Currently, only one `sub` argument is possible: `new_releases`.
-<pre><code>
-    >>> RT().dvds(page_limit=5)
-    {'only 5': 'newly released dvds'}
-</code></pre>
+```python
+>>> RT().dvds(page_limit=5)
+{'only 5': 'newly released dvds'}
+```
 
 * `feeling_lucky` -- Similar to Google's **I'm Feeling Lucky** button. Returns first instance of search term.
-<pre><code>
-    >>> RT().feeling_lucky('memento')
-    {'first result': 'for memento'}
-</code></pre>
-
+```python
+>>> RT().feeling_lucky('memento')
+{'first result': 'for memento'}
+```
 
 Tests
 -----
