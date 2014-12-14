@@ -61,7 +61,7 @@ Methods
 
 ### `search`
 
-Rotten Tomatoes movie search. Returns a list of dictionaries. Possible kwargs include: `page` and `page_limit`.
+Rotten Tomatoes movie search. Returns a list of dictionaries. Possible keyword arguments include: `page` and `page_limit`.
 
 ```python
 >>> rt = RT()
